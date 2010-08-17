@@ -1,4 +1,4 @@
-"Last modified: 2010/08/17 09:42:17
+"Last modified: 2010/08/17 10:29:54
 
 "set mapleader
 let mapleader = ","
@@ -81,6 +81,7 @@ function! VisualSearch() range
 endfunction
 
 vnoremap <silent> <leader>ff :call VisualSearch()<CR>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " project setting
 command! InitProject call CommandInitProject()
@@ -273,8 +274,6 @@ filetype indent on
 " Recognize C stype files
 au FileType vim,c,cpp setlocal cinoptions=:0,g0,(0,w1 shiftwidth=4 tabstop=4 softtabstop=4
 au FileType diff  setlocal shiftwidth=4 tabstop=4
-" au FileType html  setlocal autoindent indentexpr=
-" au FileType changelog setlocal textwidth=76
 
 " Recognize standard C++ headers
 au BufEnter /usr/include/*  setf cpp
