@@ -1,4 +1,4 @@
-"Last modified: 2010/08/17 10:29:54
+"Last modified: 2010/08/19 16:50:58
 
 "set mapleader
 let mapleader = ","
@@ -42,10 +42,10 @@ colorscheme banditEx
 syntax enable
 
 "auto fold syntax
-" set foldmethod=syntax
-" set foldcolumn=3
-" set foldclose=all
-" set foldenable
+"set foldmethod=syntax
+"set foldcolumn=3
+"set foldclose=all
+"set foldenable
 
 "utf-8 encoding
 set fenc=utf-8
