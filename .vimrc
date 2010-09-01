@@ -1,4 +1,4 @@
-"Last modified: 2010/08/19 16:50:58
+"Last modified: 2010/08/27 10:20:54
 
 "set mapleader
 let mapleader = ","
@@ -149,7 +149,7 @@ let Tlist_Display_Tag_Scope = 1
 nmap  <silent> <leader>ff :Grep<CR>
 
 "word-complete setting
-" au BufEnter * call DoWordComplete()
+"au BufEnter * call DoWordComplete()
 
 "netrw (Tree/File Explorer) setting
 let g:netrw_winsize = 30
@@ -230,14 +230,14 @@ endif
 set csverb
 set cscopequickfix=s-,c-,d-,i-,t-,e-
 
-nmap <C-_> :cstag <C-R>=expand("<cword>")<CR><CR>
-nmap <C-_>s :cs find s <C-R>=expand("<cword>")<CR><CR>
-nmap <C-_>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-nmap <C-_>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-nmap <C-_>t :cs find t <C-R>=expand("<cword>")<CR><CR>
-nmap <C-_>e :cs find e <C-R>=expand("<cword>")<CR><CR>
-nmap <C-_>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-nmap <C-_>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+nmap <silent> <C-_> :cstag <C-R>=expand("<cword>")<CR><CR>
+nmap <silent><C-_>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <silent><C-_>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <silent><C-_>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <silent><C-_>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <silent><C-_>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <silent><C-_>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <silent><C-_>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! LastModified()
