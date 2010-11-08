@@ -93,6 +93,7 @@ Alt-L	latex-suite.txt	/*Alt-L*
 BibTeX	latexhelp.txt	/*BibTeX*
 CSApprox.txt	CSApprox.txt	/*CSApprox.txt*
 ConqueTerm	conque_term.txt	/*ConqueTerm*
+FinishRecovery	recoverPlugin.txt	/*FinishRecovery*
 IMAP_PutTextWithMovement	latex-suite.txt	/*IMAP_PutTextWithMovement*
 Imap_DeleteEmptyPlaceHolders	latex-suite.txt	/*Imap_DeleteEmptyPlaceHolders*
 Imap_FreezeImap	latex-suite.txt	/*Imap_FreezeImap*
@@ -149,6 +150,9 @@ Plug_Tex_InsertItemOnThisLine	latex-suite.txt	/*Plug_Tex_InsertItemOnThisLine*
 Plug_Tex_LeftRight	latex-suite.txt	/*Plug_Tex_LeftRight*
 Plug_Tex_MathBF	latex-suite.txt	/*Plug_Tex_MathBF*
 Plug_Tex_MathCal	latex-suite.txt	/*Plug_Tex_MathCal*
+RecoverPlugin-misc	recoverPlugin.txt	/*RecoverPlugin-misc*
+RecoverPluginFinish	recoverPlugin.txt	/*RecoverPluginFinish*
+RecoverPluginHelp	recoverPlugin.txt	/*RecoverPluginHelp*
 Roman	latexhelp.txt	/*Roman*
 ShowMarksClearAll	showmarks.txt	/*ShowMarksClearAll*
 ShowMarksClearMark	showmarks.txt	/*ShowMarksClearMark*
@@ -1319,6 +1323,11 @@ project.txt	project.txt	/*project.txt*
 quotation	latexhelp.txt	/*quotation*
 quote-l	latexhelp.txt	/*quote-l*
 recommended-settings	latex-suite.txt	/*recommended-settings*
+recover-feedback	recoverPlugin.txt	/*recover-feedback*
+recover-history	recoverPlugin.txt	/*recover-history*
+recover-manual	recoverPlugin.txt	/*recover-manual*
+recover.vim	recoverPlugin.txt	/*recover.vim*
+recoverPlugin	recoverPlugin.txt	/*recoverPlugin*
 remapping-latex-suite-keys	latex-suite.txt	/*remapping-latex-suite-keys*
 report-class	latexhelp.txt	/*report-class*
 roman	latexhelp.txt	/*roman*
