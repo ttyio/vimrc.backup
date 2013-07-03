@@ -1,4 +1,6 @@
-"Last modified: 2010/11/03 13:21:31
+"Last modified: 2012/05/20 19:01:12
+if version > 700
+let $VIMRUNTIME = "/home/vincenth/bin/vim-gdb/share/vim/vim72"
 
 "set mapleader
 let mapleader = ","
@@ -31,9 +33,12 @@ set showmatch          "show match {[()]}
 set t_Co=256           "colors of vim used
 set stal=2 "show table line
 set statusline=file:\ %F%m%r%h\ %w\ \ dir:\ %r%{getcwd()}%h\ \ \ line:\ %l/%L:%c
+set expandtab
 " set hid
 " set switchbuf=usetab
 " set mouse=a
+set listchars=tab:>-,trail:-
+"set list
 
 "theme
 colorscheme banditEx
@@ -42,10 +47,10 @@ colorscheme banditEx
 syntax enable
 
 "auto fold syntax
-"set foldmethod=syntax
-"set foldcolumn=3
-"set foldclose=all
-"set foldenable
+" set foldmethod=syntax
+" set foldcolumn=3
+" set foldclose=all
+" set foldenable
 
 "utf-8 encoding
 set fenc=utf-8
@@ -54,18 +59,25 @@ set enc=utf-8
 let &termencoding=&encoding
 
 nmap <leader>w :w!<cr>
-" nmap <leader>s :so ~/.vim/.vimrc<cr>
+nmap <leader>s :so ~/.vimrc<cr>
 nmap <leader>q :q<cr>
-nmap <silent> <leader>e :tabnew ~/.vim/.vimrc<cr>
+nmap <silent> <leader>e :tabnew ~/.vimrc<cr>
 
 map <leader>j <C-W><C-J>
 map <leader>k <C-W><C-K>
 map <leader>h <C-W><C-H>
 map <leader>l <C-W><C-L>
 
-nmap <right> :bn<cr>
-nmap <left> :bp<cr>
+cmap <c-a> <home>
+cmap <c-e> <end>
+
+" disable ex mode
+:map Q <Nop> 
+
 nmap <leader>t :tabnew <C-R>=expand("%:p:h")."/" <CR>
+
+" p4 edit
+map <leader>4 :!p4 edit "%" :set noro <CR>
 
 "Remove the Windows ^M
 noremap <silent> <leader>rm mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
@@ -81,7 +93,6 @@ function! VisualSearch() range
 endfunction
 
 vnoremap <silent> <leader>ff :call VisualSearch()<CR>
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " project setting
 command! InitProject call CommandInitProject()
@@ -116,12 +127,11 @@ func! CommandBuildTags()
 	"cscope
 	call system('cscope -Rbq')
 	"lookup file
-	call system('echo -e "!_TAG_FILE_SORTED\t2\t/2=foldcase/" > filenametags')
 	call system('find . -regex ".*\.\(h\|hpp\|cpp\|c\)" -type f -printf "%f\t%p\t1\n" | sort -f >> filenametags')
 	"ctags_highlighting
-	call system("python ".expand('~/.vim/mktypes.py')." --ctags-dir=/usr/bin -r")
+    call system("python ".expand('~/.vim/mktypes.py')." --ctags-dir=/usr/bin -r")
 	"omni-cppcomplete
-	call system("ctags -R --c++-kinds=+p --fields=+iaS --extra=+q")
+    call system("/usr/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --languages=c++")
 	exec 'cd ' . l:OldCurDir
 endfunc
 
@@ -144,12 +154,10 @@ let g:Tlist_Exit_OnlyWindow = 1
 let Tlist_Sort_Type = "order"
 let Tlist_Display_Prototype = 0
 let Tlist_Display_Tag_Scope = 1
+let Tlist_Ctags_Cmd = "/usr/bin/ctags"
 
 "grep
-nmap  <silent> <leader>ff :Grep<CR>
-
-"word-complete setting
-"au BufEnter * call DoWordComplete()
+nmap  <silent> <leader>fg :Grep<CR>
 
 "netrw (Tree/File Explorer) setting
 let g:netrw_winsize = 30
@@ -188,33 +196,20 @@ au BufWinEnter \[File\ List\] setl nonumber
 nmap <F6> :cp<cr>
 nmap <F8> :cn<cr>
 
-"vimgdb setting
+" vimgdb setting
 run macros/gdb_mappings.vim
-
-"latex
-" IMPORTANT: grep will sometimes skip displaying the file name if you
-" search in a singe file. This will confuse Latex-Suite. Set your grep
-" program to always generate a file-name.
-set grepprg=grep\ -nH\ $*
-" OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults to
-" 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
-" The following changes the default filetype back to 'tex':
-let g:tex_flavor='latex'
-let g:Tex_DefaultTargetFormat='pdf'
-
-
 
 "omnicppcomplete
 set completeopt=longest,menu
-let OmniCpp_GlobalScopeSearch = 1
+let OmniCpp_GlobalScopeSearch = 0
 let OmniCpp_NamespaceSearch = 0
 let OmniCpp_DisplayMode = 1
 let OmniCpp_ShowScopeInAbbr = 0
 let OmniCpp_ShowPrototypeInAbbr = 1
 let OmniCpp_ShowAccess = 1
 let OmniCpp_DefaultNamespaces = ["std"]
-let OmniCpp_MayCompleteDot = 1
-let OmniCpp_MayCompleteArrow = 1
+let OmniCpp_MayCompleteDot = 0
+let OmniCpp_MayCompleteArrow = 0
 let OmniCpp_MayCompleteScope = 0
 let OmniCpp_SelectFirstItem = 0
 
@@ -230,9 +225,6 @@ nmap <silent> <leader>lk :LookupFile<cr>
 nmap <silent> <leader>ll :LUBufs<cr>
 nmap <silent> <leader>lw :LUWalk<cr>
 
-"conque
-nmap <silent> <leader>r :ConqueTerm bash<cr>
-
 "cscope setting
 set csprg=/usr/bin/cscope
 set csto=0
@@ -243,14 +235,14 @@ endif
 set csverb
 set cscopequickfix=s-,c-,d-,i-,t-,e-
 
-nmap <silent> <C-_> :cstag <C-R>=expand("<cword>")<CR><CR>
-nmap <silent><C-_>s :cs find s <C-R>=expand("<cword>")<CR><CR>
-nmap <silent><C-_>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-nmap <silent><C-_>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-nmap <silent><C-_>t :cs find t <C-R>=expand("<cword>")<CR><CR>
-nmap <silent><C-_>e :cs find e <C-R>=expand("<cword>")<CR><CR>
-nmap <silent><C-_>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-nmap <silent><C-_>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+nmap <C-_> :cstag <C-R>=expand("<cword>")<CR><CR>
+nmap <C-_>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap <C-_>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap <C-_>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap <C-_>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+nmap <C-_>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap <C-_>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap <C-_>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! LastModified()
@@ -262,7 +254,7 @@ function! LastModified()
 		call setpos('.', save_cursor)
 	endif
 endfun
-autocmd BufWritePre * call LastModified()
+autocmd BufWritePre .vimrc call LastModified()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! GnuIndent()
@@ -285,18 +277,24 @@ filetype plugin on
 filetype indent on
 
 " Recognize C stype files
-au FileType vim,c,cpp setlocal cinoptions=:0,g0,(0,w1 shiftwidth=4 tabstop=4 softtabstop=4
+au FileType perl,vim,c,cpp setlocal cinoptions=:0,g0,(0,w1 shiftwidth=4 tabstop=4 softtabstop=4
 au FileType diff  setlocal shiftwidth=4 tabstop=4
+" au FileType html  setlocal autoindent indentexpr=
+" au FileType changelog setlocal textwidth=76
 
 " Recognize standard C++ headers
 au BufEnter /usr/include/*  setf cpp
+au BufRead,BufNewFile *.mfs setf cpp
 au BufEnter /usr/*  call GnuIndent()
-au BufEnter * :syntax sync fromstart
+"au BufEnter * :syntax sync fromstart
+au BufEnter * :syntax sync minlines=200
 
 " Remove trailing spaces
-au BufWritePre *  call RemoveTrailingSpace()
+" au BufWritePre *  call RemoveTrailingSpace()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis  | wincmd p | diffthis
+endif
+
 endif

@@ -1,4 +1,0 @@
-ctags_highlighting.vba: call delete('/home/vincent/.vim/plugin/ctags_highlighting.vim')|call delete('/home/vincent/.vim/mktypes.py')|call delete('/home/vincent/.vim/extra_source/mktypes/setup.py')|call delete('/home/vincent/.vim/doc/ctags_highlighting.txt')
-mark.vba: call delete('/root/.vim/autoload/mark.vim')|call delete('/root/.vim/plugin/mark.vim')|call delete('/root/.vim/doc/mark.txt')
-DrawIt.vba: call delete('/root/.vim/plugin/DrawItPlugin.vim')|call delete('/root/.vim/plugin/cecutil.vim')|call delete('/root/.vim/autoload/DrawIt.vim')|call delete('/root/.vim/doc/DrawIt.txt')
-Recover-0.11.vba: call delete('/root/.vim/plugin/recover.vim')|call delete('/root/.vim/autoload/recover.vim')|call delete('/root/.vim/doc/recoverPlugin.txt')
